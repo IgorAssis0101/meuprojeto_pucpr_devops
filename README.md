@@ -6,3 +6,4 @@ Ajustando cabeçalhos
 O que é DevOps?
 Entendendo DevOps
 main
+Finalizando configuração de CI/CD
