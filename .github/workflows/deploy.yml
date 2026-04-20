@@ -1,0 +1,24 @@
+name: CD-PUCPR
+
+on:
+  workflow_run:
+    workflows: ["CI-PUCPR"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Realizando o Deploy automático
+        run: echo "O sistema foi implantado em produção com sucesso!"
+        
+      - name: Enviar Alerta ao Discord
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+          content: "Opa! O Deploy do Igor foi finalizado!"
+          title: "Status do Workflow"
