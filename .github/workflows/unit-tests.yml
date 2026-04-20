@@ -2,7 +2,7 @@ name: CI Unit Tests
 
 on:
   pull_request:
-    branches: [ main ] 
+    branches: [ main ]
 
 jobs:
   test-job:
@@ -20,5 +20,4 @@ jobs:
         run: pip install pytest
 
       - name: Executar Testes Unitários
-
         run: pytest test_main.py
